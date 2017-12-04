@@ -1,0 +1,265 @@
+Tutorial 1 Basics
+/*
+JS is used to make more interactive webpages, it's used in browsers
+The engine to react and run the code is run in Chrome in V8 engine,
+it transfers JS in to machine code and compiles it faster
+
+We make logic in JS and run it node JS
+We can make servers in node JS
+
+Node JS is good becuase it's javascript code and it's good for front end tasks
+Stay in one language.
+It is asycronous in nature.
+
+It doesn't handle single data intensive requests
+It's good with multiple clients
+
+It's constantly in development
+
+COMMANDS
+node -v //give the version
+
+
+
+MAKING A SERVER
+import or require  is basic java javascript
+to run the program write "node server.js" then it starts it
+in the browser,
+go to localhost:8000 to open the app!
+*/
+
+
+Video 2: modules and Anonymous Functions
+Modules allows the user to have different functions in the app
+EX: a math module could be called
+Navigating away from a specific directory “./module” allows you to use
+Anonymous functions -  lets you do stuff, by you don’t use it again, JS just does the action then is over
+
+
+Video 3+4: IDE
+Just Setup instructions
+Pstorm <filename> in terminal opens up the file you were working onn
+
+
+
+Video 5: Rendering HTML as a response
+Fs is a file system
+Fs.readFile(‘./index.html’, null, function(error, data)
+
+
+
+Video 6: Routing
+Passes a server request to export a function (that takes a request and response)
+You must parse the url
+Make a case to check each part of the url,
+Case/break, case/break and finally a default:
+
+In the server, import the http and the app
+
+This framework will be easier with express
+
+
+Video 7: Express what is it
+All the routing normally is done by the user
+Express builds node apps and makes the functionality to quickly setup routes and templates
+
+
+Video 8: set up express
+
+
+Video 9: Express project structure
+Set port as a variable with normalizePort
+The server variable creates the server based on the app that we made
+There are templating engines
+.jade files compile into HTML
+public files are static and can be accessed everywhere
+app.use allows us to chose the path that is used
+you can add sub routes to URL an then you can get routes that build on eachother
+routes should be in the index.html
+
+
+Video 10: JS Templating Engine Jade
+Jade allows us to use indentation to structure the document
+Indent gives the level
+Ul
+	Li //this gives a list it , putting a period after gives a list on multiple lines
+
+You can make variable sin the layout.jade file and if you use an = then it looks at the variables thatare in the other pages, but you can easily over ride external variables by making them locally
+To make a variable write – var <varNamr> = true
+If condition
+	P= It’s true
+
+For each looks like:
+Each value in <arrayName>
+	P= value
+
+Block  allows us to extend something to add to the layout
+Inserting the variable use #{variableName}
+
+Video 11: Handlebars Templating Engine
+
+Replace Jade with Hadlebars
+npm uninstal jade --save //removes from the dependencies
+
+engine created that takes in the handelbars
+it should run the vuew engine
+{{}} is why it is called handel bard
+{{}}//only outputs the ext
+{{{}}} // this inserts the actual content
+
+if statements in handlebars
+{{# if condition}}
+
+{{else}}
+
+{{/if}} //ends array
+
+
+//for each loop
+{{#each}}
+    {{key}}: {{val}}
+{{/each}}
+
+
+
+
+Video 12: GET and POST Requests
+
+//can access specific parameters by getting
+router.get('test/:<PARAMNAME>',function (req, res, next) {
+    res.render('test', {output: req.params.<PARAMNAME>});
+}
+
+post writes to a database and then redirects it
+post requests only use the body for the request
+
+
+
+
+Video 13: Validator and Session in Express
+
+
+import specific packages that help it
+
+npm install --save express-validator
+npm install --save express-session
+
+then make two variables at the top to import the packages
+
+MUST put the vaidator after the messages is parsed
+
+you should store your sessions on different servers
+
+request.check //
+
+can check certain things ie
+.isLength{{min: 4}}.equals
+
+
+Video 14: setup MongoDB
+
+inside of mongodb, type
+db
+
+db.data.insert{{"username": "max"}}
+
+it allows you to test with two terminal window: both the user and the server side development
+
+
+
+Video 15: Insert and Get Data with MongoDB
+
+make routes to get data
+
+make a get route and a post route
+
+mongo.connect(url, function
+    assert.equal(null, err);
+    db.collection (user-data).insertOne(item, function (err,
+        assert.equal)
+
+db.close(); //closes the database
+res.render('index')
+
+
+
+Video 16: update and delete Data with MongoDB
+
+we need the ID of the item
+    the idea is in the body.id
+
+mongo DB doesn't take the normal string IDs
+
+for .updateOne in the collection --> the fist arguement identifes data, second specifies what the new one will be
+
+    .deleteOne is the same except for that it doesn't replace the data
+
+
+
+Video 17: MongoDB and Monk
+
+it requires an older version of MongoDB 1.4.1
+install monk
+
+
+.find() //lets us search for specific objects
+data.on(success, function
+
+analytically
+1. calls sets up the search
+2. says what to do with the found information
+
+
+//updates
+userData.update({"_id", db.id(id)}, item;
+    userData.updateById(id, item);
+
+//delete
+userDtat.removeById(id);
+
+Video 18: Mongoose
+
+actually maps objects to database entries
+represents data as JS objects
+makes a scemea for a object ofr entries
+then makes models of the schema
+work with the data entries at a high level of interaction
+
+
+install npm mongoose
+
+require mongoose at top
+make a mongoose.Schema.
+
+new Schema({
+title: {type: String, required: true}
+content: Sting,
+author: String
+}, {collection: 'user-data'});
+
+//instantiate the model and for use in the actual database
+
+
+
+get an object
+userData.fnd(); //all data
+    .then(function(doc)) //waits til the files are done being found
+
+//make an instance of the model
+
+var data = new UserData(item);
+data.save(); //stores to the database
+
+
+//update
+UserData.findByID(id, function(err,doc) {
+if (err) {console.error('error, no entry found');}
+doc.title = req.body.title;
+doc.content = rq.body.content
+doc.author = req.body.author;
+doc.save(); //updates already existing entry
+
+//to delete
+var id = req.body.id;
+    UserData.findByIdAndRemove(id).exec();
+    res.redirect('/');
